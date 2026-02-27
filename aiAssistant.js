@@ -395,3 +395,5 @@ if (typeof window !== "undefined") {
   window.CampusAIAssistant = CampusAIAssistant;
 }
 
+
+
