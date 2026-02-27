@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Clarity</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="floating-particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <!-- Global loading overlay shown while finding colleges -->
+    <div id="global-loading" class="loading-overlay is-hidden">
+      <div class="loading-card">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Finding the best colleges for you...</p>
+      </div>
+    </div>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="brand brand--centered">
+          <img
+            class="brand-logo"
+            src="C:\Users\Ale Bhuvan\OneDrive\Desktop\logo.jpeg"
+            alt="Campus Clarity logo"
+          />
+          <div class="brand-text">
+            <h1>Campus Clarity</h1>
+            <p>Tell us your preferences, we’ll suggest colleges.</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <section class="wizard">
+          <div class="wizard-sidebar">
+            <ol class="wizard-steps">
+              <li class="wizard-step active" data-step="1">
+                <span class="step-index">1</span>
+                <div class="step-text">
+                  <h3>Academics</h3>
+                  <p>Rank, branch, category</p>
+                </div>
+              </li>
+              <li class="wizard-step" data-step="2">
+                <span class="step-index">2</span>
+                <div class="step-text">
+                  <h3>Location & Stay</h3>
+                  <p>Hostel, travel, distance</p>
+                </div>
+              </li>
+              <li class="wizard-step" data-step="3">
+                <span class="step-index">3</span>
+                <div class="step-text">
+                  <h3>Campus Life</h3>
+                  <p>Events, facilities, dream</p>
+                </div>
+              </li>
+              <li class="wizard-step" data-step="4">
+                <span class="step-index">4</span>
+                <div class="step-text">
+                  <h3>Summary</h3>
+                  <p>Review & submit</p>
+                </div>
+              </li>
+              <li class="wizard-step" data-step="5">
+                <span class="step-index">5</span>
+                <div class="step-text">
+                  <h3>Suggestions</h3>
+                  <p>See recommended colleges</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="wizard-content">
+            <!-- STEP 1: Academics -->
+            <form id="college-form">
+              <div class="wizard-panel active has-watermark" data-step="1">
+                <h2>Academic Profile</h2>
+                <p class="panel-subtitle">
+                  Start with your exam details and broad preferences.
+                </p>
+
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="exam-name">Entrance exam</label>
+                    <select id="exam-name" name="examName">
+                      <option value="EAMCET" selected>EAMCET (Telangana)</option>
+                      <option value="JEE">JEE (Main / Advanced)</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="exam-rank">Entrance exam rank</label>
+                    <input
+                      id="exam-rank"
+                      name="examRank"
+                      type="number"
+                      min="1"
+                      placeholder="Enter your exact rank e.g. 12345"
+                    />
+                  </div>
+
+                  <div class="field">
+                    <label for="required-branch">Preferred branch</label>
+                    <select id="required-branch" name="requiredBranch">
+                      <option value="">Select branch</option>
+                      <option value="CSE">CSE (Computer Science & Engineering)</option>
+                      <option value="ECE">ECE (Electronics & Communication)</option>
+                      <option value="EEE">EEE (Electrical & Electronics)</option>
+                      <option value="Mechanical">Mechanical</option>
+                      <option value="Civil">Civil</option>
+                      <option value="IT">IT (Information Technology)</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="category"
+                      >Category of student
+                      <span class="hint">(caste)</span></label
+                    >
+                    <select id="category" name="category">
+                      <option value="">Select category</option>
+                      <option value="OC">OC / General</option>
+                      <option value="BC-A">BC-A</option>
+                      <option value="BC-B">BC-B</option>
+                      <option value="BC-C">BC-C</option>
+                      <option value="BC-D">BC-D</option>
+                      <option value="BC-E">BC-E</option>
+                      <option value="SC">SC</option>
+                      <option value="ST">ST</option>
+                      <option value="OBC">OBC (other)</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="college-type"
+                      >Preferred college type
+                      <span class="hint">(can choose multiple)</span></label
+                    >
+                    <div class="pill-group" id="college-type">
+                      <label class="pill">
+                        <input
+                          type="checkbox"
+                          name="collegeType"
+                          value="private-autonomous"
+                        />
+                        <span>Private autonomous</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="checkbox"
+                          name="collegeType"
+                          value="private-jntuh-ou"
+                        />
+                        <span>Private (JNTUH/OU affiliated)</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="checkbox"
+                          name="collegeType"
+                          value="government"
+                        />
+                        <span>Government</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="checkbox"
+                          name="collegeType"
+                          value="any"
+                        />
+                        <span>Any</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="budget"
+                      >Budget range (per year)
+                      <span class="hint">in ₹</span></label
+                    >
+                    <div class="range-group range-group--stack">
+                      <input
+                        id="budget-min"
+                        name="budgetMin"
+                        type="number"
+                        min="0"
+                        placeholder="Min (₹)"
+                      />
+                      <input
+                        id="budget-max"
+                        name="budgetMax"
+                        type="number"
+                        min="0"
+                        placeholder="Max (₹)"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="naac-grade">Minimum NAAC grade</label>
+                    <select id="naac-grade" name="naacGrade">
+                      <option value="">No preference</option>
+                      <option value="A++">A++</option>
+                      <option value="A+">A+</option>
+                      <option value="A">A</option>
+                      <option value="B++">B++ or above</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="dual-degree">Dual degree availability</label>
+                    <select id="dual-degree" name="dualDegree">
+                      <option value="no-preference">No preference</option>
+                      <option value="required">Required</option>
+                      <option value="nice-to-have">Nice to have</option>
+                      <option value="not-needed">Not needed</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 2: Location & Stay -->
+              <div class="wizard-panel" data-step="2">
+                <h2>Location & Stay</h2>
+                <p class="panel-subtitle">
+                  Tell us where you’d like to study and how flexible you are.
+                </p>
+
+                <div class="field-grid">
+                  <div class="field">
+                    <label>Are you okay with hostel?</label>
+                    <div class="pill-group">
+                      <label class="pill">
+                        <input
+                          type="radio"
+                          name="hostelPreference"
+                          value="yes"
+                          checked
+                        />
+                        <span>Yes, hostel is fine</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="radio"
+                          name="hostelPreference"
+                          value="no"
+                        />
+                        <span>No, prefer day scholar</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="radio"
+                          name="hostelPreference"
+                          value="either"
+                        />
+                        <span>Either is fine</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="field" id="college-area-field">
+                    <label>
+                      Preferred college area
+                      <span class="hint">(only if you’ll stay in hostel)</span>
+                    </label>
+                    <div class="pill-group">
+                      <label class="pill">
+                        <input
+                          type="radio"
+                          name="collegeArea"
+                          value="urban"
+                          checked
+                        />
+                        <span>Urban</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="radio"
+                          name="collegeArea"
+                          value="rural"
+                        />
+                        <span>Rural</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="radio"
+                          name="collegeArea"
+                          value="either"
+                        />
+                        <span>Either</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="home-location-eamcet"
+                      >Home location
+                      <span class="hint"
+                        >(district / state, used for nearby colleges)</span
+                      ></label
+                    >
+                    <!-- EAMCET: Telangana districts -->
+                    <select
+                      id="home-location-eamcet"
+                      name="homeLocation"
+                    >
+                      <option value="">Select Telangana district</option>
+                      <option value="Hyderabad">Hyderabad</option>
+                      <option value="Medchal-Malkajgiri">Medchal-Malkajgiri</option>
+                      <option value="Ranga Reddy">Ranga Reddy</option>
+                      <option value="Warangal">Warangal</option>
+                      <option value="Khammam">Khammam</option>
+                      <option value="Karimnagar">Karimnagar</option>
+                      <option value="Nalgonda">Nalgonda</option>
+                      <option value="Nizamabad">Nizamabad</option>
+                      <option value="Adilabad">Adilabad</option>
+                      <option value="Mahabubnagar">Mahabubnagar</option>
+                      <option value="Sangareddy">Sangareddy</option>
+                      <option value="Siddipet">Siddipet</option>
+                      <option value="Suryapet">Suryapet</option>
+                      <option value="Yadadri Bhuvanagiri">Yadadri Bhuvanagiri</option>
+                    </select>
+                    <!-- JEE: Indian states -->
+                    <select
+                      id="home-location-jee"
+                      class="is-hidden"
+                    >
+                      <option value="">Select state</option>
+                      <option value="Telangana">Telangana</option>
+                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                      <option value="Karnataka">Karnataka</option>
+                      <option value="Tamil Nadu">Tamil Nadu</option>
+                      <option value="Kerala">Kerala</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Gujarat">Gujarat</option>
+                      <option value="Rajasthan">Rajasthan</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                      <option value="Bihar">Bihar</option>
+                      <option value="Odisha">Odisha</option>
+                      <option value="West Bengal">West Bengal</option>
+                      <option value="Jharkhand">Jharkhand</option>
+                      <option value="Chhattisgarh">Chhattisgarh</option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Haryana">Haryana</option>
+                      <option value="Uttarakhand">Uttarakhand</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="max-distance"
+                      >Maximum distance from home
+                      <span class="hint">(one way, in km)</span></label
+                    >
+                    <input
+                      id="max-distance"
+                      name="maxDistanceKm"
+                      type="number"
+                      min="0"
+                      placeholder="e.g. 25"
+                    />
+                  </div>
+
+                  <div class="field">
+                    <label>Public transport availability</label>
+                    <div class="pill-group">
+                      <label class="pill">
+                        <input
+                          type="radio"
+                          name="transportImportance"
+                          value="must-have"
+                        />
+                        <span>Must have frequent transport</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="radio"
+                          name="transportImportance"
+                          value="good-to-have"
+                        />
+                        <span>Good to have</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="radio"
+                          name="transportImportance"
+                          value="not-important"
+                        />
+                        <span>Not very important</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 3: Campus Life & Extras -->
+              <div class="wizard-panel" data-step="3">
+                <h2>Campus Life & Extras</h2>
+                <p class="panel-subtitle">
+                  Share what kind of campus experience matters to you.
+                </p>
+
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="fest-frequency"
+                      >Fest / events frequency preference</label
+                    >
+                    <select id="fest-frequency" name="festFrequency">
+                      <option value="">No preference</option>
+                      <option value="very-high">
+                        Very high (multiple fests a year)
+                      </option>
+                      <option value="moderate">
+                        Moderate (at least one major fest)
+                      </option>
+                      <option value="low">
+                        Low (events are not important)
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label>Campus facilities (check all that matter)</label>
+                    <div class="pill-group">
+                      <label class="pill">
+                        <input
+                          type="checkbox"
+                          name="facilities"
+                          value="gym"
+                        />
+                        <span>Gym</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="checkbox"
+                          name="facilities"
+                          value="swimming-pool"
+                        />
+                        <span>Swimming pool</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="checkbox"
+                          name="facilities"
+                          value="playground"
+                        />
+                        <span>Playground</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="checkbox"
+                          name="facilities"
+                          value="indoor-games"
+                        />
+                        <span>Indoor games</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="checkbox"
+                          name="facilities"
+                          value="library"
+                        />
+                        <span>Strong library</span>
+                      </label>
+                      <label class="pill">
+                        <input
+                          type="checkbox"
+                          name="facilities"
+                          value="clubs"
+                        />
+                        <span>Active clubs / chapters</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="gender-ratio"
+                      >Gender ratio importance</label
+                    >
+                    <select id="gender-ratio" name="genderRatio">
+                      <option value="">No preference</option>
+                      <option value="balanced">Prefer balanced ratio</option>
+                      <option value="female-friendly">
+                        Higher female ratio campus
+                      </option>
+                      <option value="male-friendly">
+                        Higher male ratio campus
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="scholarship"
+                      >Scholarship / fee concession importance</label
+                    >
+                    <select id="scholarship" name="scholarshipImportance">
+                      <option value="">No preference</option>
+                      <option value="very-important">Very important</option>
+                      <option value="somewhat-important">
+                        Somewhat important
+                      </option>
+                      <option value="not-important">
+                        Not very important
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="placements"
+                      >Placement record importance
+                      <span class="hint">(recent years)</span></label
+                    >
+                    <select id="placements" name="placementImportance">
+                      <option value="">No preference</option>
+                      <option value="tier-1">
+                        Very strong (tier-1 companies, high packages)
+                      </option>
+                      <option value="good">
+                        Good (steady placements, decent packages)
+                      </option>
+                      <option value="ok">Okay (placements not a priority)</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="dream-colleges"
+                      >Any personal dream colleges?</label
+                    >
+                    <textarea
+                      id="dream-colleges"
+                      name="dreamColleges"
+                      rows="3"
+                      placeholder="List colleges you really want to target, if any."
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 4: Summary -->
+              <div class="wizard-panel" data-step="4">
+                <h2>Review & Submit</h2>
+                <p class="panel-subtitle">
+                  Confirm your preferences before sending them to the assistant.
+                </p>
+
+                <div id="summary" class="summary-card">
+                  <!-- Filled by JavaScript -->
+                </div>
+
+                <p class="panel-note">
+                  After you click <strong>Get college suggestions</strong>, your
+                  preferences can be sent to an AI agent / backend API to
+                  generate a list of suitable colleges.
+                </p>
+              </div>
+
+              <!-- STEP 5: Results -->
+              <div class="wizard-panel" data-step="5">
+                <h2>Your College Suggestions</h2>
+                <p class="panel-subtitle">
+                  Based on your preferences, here are some colleges you can explore.
+                </p>
+                <div id="results-container" class="results-container">
+                  <!-- Filled by ResultsDisplay -->
+                </div>
+              </div>
+
+              <footer class="wizard-footer">
+                <button
+                  type="button"
+                  class="btn-secondary"
+                  id="prev-btn"
+                  disabled
+                >
+                  Back
+                </button>
+                <div class="wizard-footer-right">
+                  <div class="wizard-progress">
+                    <div class="wizard-progress-bar">
+                      <div
+                        class="wizard-progress-fill"
+                        id="wizard-progress-fill"
+                      ></div>
+                    </div>
+                  </div>
+                  <span class="step-indicator"
+                    ><span id="current-step">1</span> / 5</span
+                  >
+                  <button type="button" class="btn-primary" id="next-btn">
+                    Next
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn-primary"
+                    id="submit-btn"
+                    hidden
+                  >
+                    Get college suggestions
+                  </button>
+                </div>
+              </footer>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="collegeDatabase.js"></script>
+    <script src="recommendationEngine.js"></script>
+    <script src="resultsDisplay.js"></script>
+    <script src="aiAssistant.js"></script>
+    <script src="app.js"></script>
+  </body>
+  </html>
+
